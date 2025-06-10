@@ -1,0 +1,74 @@
+&NOAHLSM_OFFLINE
+
+ HRLDAS_SETUP_FILE = "./DOMAIN/wrfinput_d0x.nc"
+ INDIR =  "./FORCING"
+ SPATIAL_FILENAME = "./DOMAIN/soil_properties.nc"
+ OUTDIR = "./"
+
+ START_YEAR = 2019
+ START_MONTH = 10
+ START_DAY = 01
+ START_HOUR = 00
+ START_MIN = 00
+
+! Specification of the land surface model restart file
+! Comment out the option if not initializing from a restart file
+ RESTART_FILENAME_REQUESTED = 'RESTART.2019100100_DOMAIN1'
+
+ ! Specification of simulation length in days OR hours
+ KHOUR = 8796 
+
+ ! Physics options (see the documentation for details)
+ DYNAMIC_VEG_OPTION = 4
+ CANOPY_STOMATAL_RESISTANCE_OPTION = 1
+ BTR_OPTION = 1
+ RUNOFF_OPTION = 7
+ SURFACE_DRAG_OPTION = 1
+ FROZEN_SOIL_OPTION = 1
+ SUPERCOOLED_WATER_OPTION = 1
+ RADIATIVE_TRANSFER_OPTION = 3
+ SNOW_ALBEDO_OPTION = 1
+ PCP_PARTITION_OPTION = 1
+ TBOT_OPTION = 2
+ TEMP_TIME_SCHEME_OPTION = 3
+ GLACIER_OPTION = 2
+ SURFACE_RESISTANCE_OPTION = 4
+ IMPERV_OPTION = 2
+
+ ! Timestep in units of seconds
+ FORCING_TIMESTEP = 3600
+ NOAH_TIMESTEP = 3600
+ OUTPUT_TIMESTEP = 86400
+
+ ! Land surface model restart file write frequency
+ RESTART_FREQUENCY_HOURS = -9999
+
+ ! Split output after split_output_count output times
+ SPLIT_OUTPUT_COUNT = 0
+
+ ! Soil layer specification
+ NSOIL = 4
+ soil_thick_input(1) = 0.1
+ soil_thick_input(2) = 0.3
+ soil_thick_input(3) = 0.6
+ soil_thick_input(4) = 1.0
+
+ ! Forcing data measurement height for winds, temp, humidity
+ ZLVL = 10.0
+
+ ! Restart file format options
+ rst_bi_in = 0
+ rst_bi_out = 0
+
+/
+
+&WRF_HYDRO_OFFLINE
+ !Specifications of forcing data: 1=HRLDAS-hr format, 2=HRLDAS-min format 3=WRF, 4=Idealized, 5=Ideal w/ Spec.Precip., 6=HRLDAS-hrl y format w/ Spec. Precip.
+ FORC_TYP = 2
+/
+
+&CROCUS_nlist
+ crocus_opt = 0  ! 0 model is off, 1 model is on
+ act_lev = 40     ! 1-50, 20-40 normal options
+/
+
